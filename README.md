@@ -1,6 +1,9 @@
 Modul6_ArsitekturAplikasiAndroid
+
 Nama: Charisa Salsabila Larasati
+
 NIM: 24515020111022
+
 Deskripsi: Tugas praktikum Pengembangan Aplikasi Perangkat Bergerak (PAPB) mengenai Arsitektur Aplikasi Android (UI Layer, ViewModel, Repository, & Data Layer)
 
 Proyek ini merupakan pengembangan lanjutan dari NavigationLab yang menerapkan prinsip Clean Architecture dan Separation of Concerns pada pengembangan aplikasi Android berbasis Jetpack Compose. Fokus utamanya adalah memisahkan tanggung jawab secara tegas, di mana komponen antarmuka seperti HomeScreen dan DetailScreen hanya bertugas merender state dan menangani interaksi pengguna, sementara logika pengelolaan data didelegasikan sepenuhnya ke ViewModel melalui kontrak antarmuka Repository yang mengabstraksi sumber data lokal in-memory (StudentLocalDataSource).
