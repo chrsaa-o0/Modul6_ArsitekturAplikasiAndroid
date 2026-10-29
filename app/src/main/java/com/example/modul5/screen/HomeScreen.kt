@@ -1,19 +1,18 @@
 package com.example.modul5.screen
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Text
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.modul5.ui.home.HomeUiState
 
 @Composable
 fun HomeScreen(
+    uiState: HomeUiState,
     onOpenDetail: (Int) -> Unit,
     onOpenProfile: () -> Unit,
     onOpenAbout: () -> Unit
@@ -21,18 +20,51 @@ fun HomeScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(24.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+            .padding(16.dp)
+            .statusBarsPadding()
     ) {
-        Text("Home", style = MaterialTheme.typography.headlineMedium)
-        Button(onClick = { onOpenDetail(2026) }) {
-            Text("Buka Detail Mahasiswa 2026")
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Button(onClick = onOpenProfile) {
+                Text("Profile")
+            }
+            Button(onClick = onOpenAbout) {
+                Text("About")
+            }
         }
-        OutlinedButton(onClick = onOpenProfile) {
-            Text("Buka Profile")
-        }
-        OutlinedButton(onClick = onOpenAbout) {
-            Text("Buka About")
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            text = "Daftar Mahasiswa",
+            style = MaterialTheme.typography.titleLarge
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        LazyColumn(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            items(uiState.students) { student ->
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 4.dp)
+                        .clickable { onOpenDetail(student.id) },
+                    elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+                ) {
+                    Column(
+                        modifier = Modifier.padding(16.dp)
+                    ) {
+                        Text(
+                            text = "ID: ${student.id}",
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                        Text(
+                            text = "Nama: ${student.name}",
+                            style = MaterialTheme.typography.titleMedium
+                        )
+                    }
+                }
+            }
         }
     }
 }

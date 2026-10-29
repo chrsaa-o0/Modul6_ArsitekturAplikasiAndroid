@@ -12,7 +12,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Modul5Theme() {
+            Modul5Theme {
                 Surface(modifier = Modifier.fillMaxSize()) {
                     NavigationLabApp()
                 }
